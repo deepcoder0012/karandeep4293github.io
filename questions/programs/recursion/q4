@@ -1,0 +1,18 @@
+#include <stdio.h>
+int find(int number){
+    if (number == 0) 
+        return 0; 
+    else
+        return (number % 2 + 10 * find(number/2));
+}
+  
+void main(){
+    int number = 10;
+    printf("%d",find(number));
+}
+
+
+    ---OUTPUT---
+    1010
+
+    

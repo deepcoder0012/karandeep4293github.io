@@ -1,0 +1,46 @@
+#include<stdio.h>
+float stringToFloat(const char* str) {
+    float result = 0.0;
+    float fraction = 0.1;
+    int sign = 1;
+    int decimalFound = 0;
+    int i = 0;
+    if (str[0] == '-') {
+        sign = -1;
+        i = 1;
+    }
+    while (str[i] != '\0') {
+      if (str[i] >= '0' && str[i] <= '9') {
+      if (decimalFound) {
+    result += (str[i] - '0') * fraction;
+      fraction *= 0.1;
+            } else {
+      result = result * 10 + (str[i] - '0');
+            }
+        } else if (str[i] == '.') {
+            decimalFound = 1;
+        } else {
+    printf("Invalid character in the 
+    string : %c\n", str[i]);
+            return 0.0;
+        }
+        i++;
+    }
+    return result * sign;
+}
+int main() {
+ char inputString[10];
+ printf("Enter a string representing a float: ");
+ scanf("%s", inputString);
+ float floatValue = stringToFloat(inputString);
+ printf("Float value: %f\n", floatValue);
+ return 0;
+}  
+
+
+    ---OUTPUT---
+Enter a string representing a float: 
+123456789
+Float value: 123456789.0000
+
+    

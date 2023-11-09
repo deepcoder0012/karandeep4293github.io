@@ -1,0 +1,71 @@
+#include 
+        #include 
+        
+        void breadthFirstSearch(int startVertex, int V, int adjacencyMatrix[V][V], int visited[]) {
+            int queue[V];
+            int front = -1, rear = -1;
+        
+            printf("Breadth-First Search Traversal starting from vertex %d: ", startVertex);
+        
+            visited[startVertex] = 1;
+            queue[++rear] = startVertex;
+        
+            while (front != rear) {
+                int currentVertex = queue[++front];
+                printf("%d ", currentVertex);
+        
+                for (int i = 0; i < V; i++) {
+                    if (adjacencyMatrix[currentVertex][i] == 1 && !visited[i]) {
+                        visited[i] = 1;
+                        queue[++rear] = i;
+                    }
+                }
+            }
+        
+            printf("\n");
+        }
+        
+        int main() {
+            int V;
+        
+            printf("Enter the number of vertices: ");
+            scanf("%d", &V);
+        
+            int adjacencyMatrix[V][V];
+        
+            printf("Enter the adjacency matrix (%d x %d):\n", V, V);
+            for (int i = 0; i < V; i++) {
+                for (int j = 0; j < V; j++) {
+                    scanf("%d", &adjacencyMatrix[i][j]);
+                }
+            }
+        
+            int visited[V];
+            for (int i = 0; i < V; i++) {
+                visited[i] = 0;
+            }
+        
+            int startVertex;
+            printf("Enter the starting vertex for BFS: ");
+            scanf("%d", &startVertex);
+        
+            breadthFirstSearch(startVertex, V, adjacencyMatrix, visited);
+        
+            return 0;
+        }
+        
+
+
+                
+output
+           
+          
+            Enter the number of vertices: 5
+            Enter the adjacency matrix (5 x 5):
+            0 1 1 0 0
+            1 0 0 1 0
+            1 0 0 0 1
+            0 1 0 0 0
+            0 0 1 0 0
+            Enter the starting vertex for BFS: 0
+            Breadth-First Search Traversal starting from vertex 0: 0 1 2 3        

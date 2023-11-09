@@ -1,0 +1,150 @@
+ #include 
+        #include 
+        
+        struct Node {
+            int data;
+            struct Node* next;
+        };
+        
+        struct Graph {
+            int V;
+            struct Node** adjList;
+        };
+        
+        struct Node* createNode(int data) {
+            struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+            newNode->data = data;
+            newNode->next = NULL;
+            return newNode;
+        }
+        
+        struct Graph* createGraph(int V) {
+            struct Graph* graph = (struct Graph*)malloc(sizeof(struct Graph));
+            graph->V = V;
+            graph->adjList = (struct Node**)malloc(V * sizeof(struct Node*));
+            
+            for (int i = 0; i < V; i++) {
+                graph->adjList[i] = NULL;
+            }
+            
+            return graph;
+        }
+        
+        void addEdge(struct Graph* graph, int src, int dest) {
+            struct Node* newNode = createNode(dest);
+            newNode->next = graph->adjList[src];
+            graph->adjList[src] = newNode;
+            
+            newNode = createNode(src);
+            newNode->next = graph->adjList[dest];
+            graph->adjList[dest] = newNode;
+        }
+        
+        void deleteEdge(struct Graph* graph, int src, int dest) {
+            struct Node* current = graph->adjList[src];
+            struct Node* prev = NULL;
+            
+            while (current != NULL && current->data != dest) {
+                prev = current;
+                current = current->next;
+            }
+            
+            if (current == NULL) {
+                return; // Edge not found
+            }
+            
+            if (prev == NULL) {
+                graph->adjList[src] = current->next;
+            } else {
+                prev->next = current->next;
+            }
+            
+            free(current);
+            
+            // Delete the reverse edge
+            current = graph->adjList[dest];
+            prev = NULL;
+            
+            while (current != NULL && current->data != src) {
+                prev = current;
+                current = current->next;
+            }
+            
+            if (prev == NULL) {
+                graph->adjList[dest] = current->next;
+            } else {
+                prev->next = current->next;
+            }
+            
+            free(current);
+        }
+        
+        void displayGraph(struct Graph* graph) {
+            for (int i = 0; i < graph->V; i++) {
+                struct Node* current = graph->adjList[i];
+                printf("Adjacency list of vertex %d: ", i);
+                while (current != NULL) {
+                    printf("%d -> ", current->data);
+                    current = current->next;
+                }
+                printf("NULL\n");
+            }
+        }
+        
+        int main() {
+            int V, E;
+            
+            printf("Enter the number of vertices: ");
+            scanf("%d", &V);
+            
+            struct Graph* graph = createGraph(V);
+            
+            printf("Enter the number of edges: ");
+            scanf("%d", &E);
+            
+            for (int i = 0; i < E; i++) {
+                int src, dest;
+                printf("Enter edge %d (source destination): ", i + 1);
+                scanf("%d %d", &src, &dest);
+                addEdge(graph, src, dest);
+            }
+            
+            printf("Graph before deletion:\n");
+            displayGraph(graph);
+            
+            int src, dest;
+            printf("Enter edge to delete (source destination): ");
+            scanf("%d %d", &src, &dest);
+            deleteEdge(graph, src, dest);
+            
+            printf("Graph after deletion:\n");
+            displayGraph(graph);
+            
+            return 0;
+        }
+        
+                
+output
+           
+            Enter the number of vertices: 5
+            Enter the number of edges: 6
+            Enter edge 1 (source destination): 0 1
+            Enter edge 2 (source destination): 0 2
+            Enter edge 3 (source destination): 1 3
+            Enter edge 4 (source destination): 1 4
+            Enter edge 5 (source destination): 2 4
+            Enter edge 6 (source destination): 3 4
+            Graph before deletion:
+            Adjacency list of vertex 0: 2 -> 1 -> NULL
+            Adjacency list of vertex 1: 4 -> 3 -> 0 -> NULL
+            Adjacency list of vertex 2: 4 -> 0 -> NULL
+            Adjacency list of vertex 3: 4 -> 1 -> NULL
+            Adjacency list of vertex 4: 3 -> 2 -> 1 -> 0 -> NULL
+            Enter edge to delete (source destination): 1 4
+            Graph after deletion:
+            Adjacency list of vertex 0: 2 -> 1 -> NULL
+            Adjacency list of vertex 1: 3 -> 0 -> NULL
+            Adjacency list of vertex 2: 4 -> 0 -> NULL
+            Adjacency list of vertex 3: 4 -> 1 -> NULL
+            Adjacency list of vertex 4: 3 -> 2 -> 0 -> NULL
+            

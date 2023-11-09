@@ -1,0 +1,25 @@
+#include<stdio.h>
+void main(){
+    char str[40];
+    printf("\nEnter string : ");
+    gets(str);
+    int option;
+    printf("\n1)leftAlign 2)centerAlign 3)rightAlign : ");
+    scanf("%d",&option);
+    if(option==1) printf("%s",str);
+    else if(option==2) printf("%+35s",str);
+    else if(option==3) printf("%+60s",str);
+    else printf("Incorrect option");
+}
+
+
+    ---OUPTUT---
+Enter string : hello world
+1)leftAlign 2)centerAlign 3)rightAlign : 3
+                                                 hello world
+
+ Enter string : hello world
+ 1)leftAlign 2)centerAlign 3)rightAlign : 2
+             hello world                                                 
+
+    

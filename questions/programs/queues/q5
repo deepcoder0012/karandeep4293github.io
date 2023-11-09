@@ -1,0 +1,66 @@
+#include<stdio.h>
+#define n 4
+void enqueue();
+void dequeue();
+void peek();
+void isEmpty();
+void isFull();
+int queue[n],front=-1,rear=-1;
+void main(){
+    int option;
+    while(1){
+        printf("\n1)enqueue 2)dequeue 3)peek 4)isEmpty 5)isFull 6)exit || Enter : ");
+        scanf("%d",&option);
+        if(option<1 || option>6) printf("\nInvalid option!!");
+        else if(option==1) enqueue();
+        else if(option==2) dequeue();
+        else if(option==3) peek();
+        else if(option==4) isEmpty();
+        else if(option==5) isFull();
+        else break;
+    }
+}
+
+void enqueue(){
+    if((rear+1)%n==front) printf("\nQueue is full");
+    else{
+        if(front==-1) front=0;
+        rear=(rear+1)%n;
+        printf("\nEnter value : ");
+        scanf("%d",&queue[rear]);
+    }
+}
+void dequeue(){
+    if(front==-1) printf("\nQueue is Empty");
+    else if(front==rear) front=rear=-1;
+    else front=(front+1)%n;
+}
+void peek(){
+    if(front==-1) printf("\nNothing in Queue");
+    else printf("\npeek : %d",queue[front]);
+}
+void isEmpty(){
+    if(front==-1) printf("\nQueue is Empty");
+    else printf("\nQueue is not Empty");
+}
+void isFull(){
+    if((rear+1)%n==front) printf("\nQueue is full");
+    else printf("\nQueue is not full");
+}
+
+
+    ---OUTPUT---
+1)enqueue 2)dequeue 3)peek 4)isEmpty 5)isFull 6)exit || Enter : 1
+
+Enter value : 1
+
+1)enqueue 2)dequeue 3)peek 4)isEmpty 5)isFull 6)exit || Enter : 1
+
+Enter value : 2
+
+1)enqueue 2)dequeue 3)peek 4)isEmpty 5)isFull 6)exit || Enter : 3
+
+peek : 1
+1)enqueue 2)dequeue 3)peek 4)isEmpty 5)isFull 6)exit || Enter : 6
+
+    

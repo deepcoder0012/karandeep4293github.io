@@ -1,0 +1,116 @@
+#include<stdio.h>
+#include<stdlib.h>
+void enqueue();
+void dequeue();
+void isEmpty();
+void isFull();
+void peek();
+struct node{
+    char data[20];
+    struct node * next;
+};
+struct node * start = NULL;
+struct node * nn = NULL;
+struct node * traverse = NULL;
+struct node * temp = NULL;
+int count = 0;
+void main(){
+    int option;
+    while(1){
+        printf("\n----------------");
+        printf("\n1)enque 2)deque 3)peek 4)isEmpty 5)isFull 6)exit\n");
+        printf("----------------\n");
+        printf("Enter : ");
+        scanf("%d",&option);
+        if(option<0 || option>6) printf("\nInvalid option!!");
+        else if(option==1) enqueue();
+        else if(option==2) dequeue();
+        else if(option==3) peek();
+        else if(option==4) isEmpty();
+        else if(option==5) isFull();
+        else break;
+    }
+}
+
+void enqueue(){
+    if(start==NULL){
+    nn=(struct node*)malloc(sizeof(struct node));
+    printf("\nEnter string : ");
+    scanf("%s",nn->data);
+    nn->next=start;
+    start=nn;
+    count++;
+    }else{
+    nn=(struct node*)malloc(sizeof(struct node));
+    printf("\nEnter string : ");
+    scanf("%s",nn->data);
+    nn->next=NULL;
+    traverse=start;
+    while(traverse->next!=NULL){
+        traverse=traverse->next;
+    }
+    traverse->next=nn;
+    count++;
+    }
+}
+void dequeue(){
+    if(start==NULL){
+        printf("\nLinklist is empty!!");
+        return;
+    }else{
+        temp=start;
+        start=start->next;
+        free(temp);
+        count--;
+    }
+}
+void isEmpty(){
+    if(start==NULL) printf("\n linklist is empty");
+    else printf("\nlinklist is not empty");
+}
+void isFull(){
+    nn=(struct node*)malloc(sizeof(struct node));
+    if(nn==NULL) printf("\nLinklist is Full");
+    else printf("\nLinklist is not full");
+    free(nn);
+}
+void peek(){
+    if(start==NULL){
+        printf("Linklist is empty");
+        return;
+    }
+    printf("peek : %s ",start->data);
+}
+
+
+    ---OUTPUT---
+----------------
+1)enque 2)deque 3)peek 4)isEmpty 5)isFull 6)exit
+----------------
+Enter : 1
+
+Enter string : kartik
+
+----------------
+1)enque 2)deque 3)peek 4)isEmpty 5)isFull 6)exit
+----------------
+Enter : 1
+
+Enter string : vishal
+
+----------------
+1)enque 2)deque 3)peek 4)isEmpty 5)isFull 6)exit
+----------------
+Enter : 2
+
+----------------
+1)enque 2)deque 3)peek 4)isEmpty 5)isFull 6)exit
+----------------
+Enter : 3
+peek : vishal 
+----------------
+1)enque 2)deque 3)peek 4)isEmpty 5)isFull 6)exit
+----------------
+Enter : 6
+
+    

@@ -1,0 +1,43 @@
+#include<stdio.h>
+void insertionSort(int[],int);
+void main(){
+    int arr[5],size=5;
+    for(int i=0;i<size;i++){
+        printf("\nEnter value %d : ",i+1);
+        scanf("%d",&arr[i]);
+    }
+    insertionSort(arr,size);
+    for(int i=0;i<size;i++){
+        printf("%d ",arr[i]);
+    }
+}
+void insertionSort(int arr[],int size){
+    int sorted=0,ele,temp;
+    for(int j=1;j<size;j++){
+        ele=sorted+1;
+    for(int i=j;i>0;i--){
+        if(arr[ele]<arr[i-1]){
+            temp=arr[i];
+            arr[i]=arr[i-1];
+            arr[i-1]=temp;
+            ele--;
+        }
+    }
+    sorted++;
+    }
+}
+
+
+    ---OUTPUT---
+Enter value 1 : 54
+
+Enter value 2 : 3
+
+Enter value 3 : 66
+
+Enter value 4 : 1
+
+Enter value 5 : 23
+1 3 23 54 66
+
+    

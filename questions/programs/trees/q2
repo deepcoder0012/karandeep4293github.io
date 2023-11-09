@@ -1,0 +1,93 @@
+#include stdio.h>
+        #include stdlib.h>
+        
+        struct TreeNode {
+            int data;
+            struct TreeNode* left;
+            struct TreeNode* right;
+        };
+        
+        typedef struct TreeNode TreeNode;
+        
+        TreeNode* createTreeNode(int data) {
+            TreeNode* newNode = (TreeNode*)malloc(sizeof(TreeNode));
+            newNode->data = data;
+            newNode->left = NULL;
+            newNode->right = NULL;
+            return newNode;
+        }
+        
+        TreeNode* buildBinaryTree() {
+            int data;
+            printf("Enter the root node value: ");
+            scanf("%d", &data);
+        
+            if (data == -1) {
+                return NULL; // Return NULL for empty nodes (represented by -1)
+            }
+        
+            TreeNode* root = createTreeNode(data);
+        
+            printf("Enter the left subtree for %d:\n", data);
+            root->left = buildBinaryTree();
+        
+            printf("Enter the right subtree for %d:\n", data);
+            root->right = buildBinaryTree();
+        
+            return root;
+        }
+        
+        void levelOrderTraversal(TreeNode* root) {
+            if (root == NULL) {
+                return;
+            }
+        
+            TreeNode* queue[100];
+            int front = 0, rear = 0;
+            queue[rear++] = root;
+        
+            while (front < rear) {
+                TreeNode* current = queue[front++];
+                printf("%d ", current->data);
+        
+                if (current->left != NULL) {
+                    queue[rear++] = current->left;
+                }
+        
+                if (current->right != NULL) {
+                    queue[rear++] = current->right;
+                }
+           
+                                   
+                
+output
+            Enter the binary tree structure (use -1 for empty nodes):
+            Enter the root node value: 1
+            Enter the left subtree for 1:
+            Enter the root node value: 2
+            Enter the left subtree for 2:
+            Enter the root node value: 4
+            Enter the left subtree for 4:
+            Enter the root node value: -1
+            Enter the right subtree for 4:
+            Enter the root node value: -1
+            Enter the right subtree for 2:
+            Enter the root node value: 5
+            Enter the left subtree for 5:
+            Enter the root node value: -1
+            Enter the right subtree for 5:
+            Enter the right subtree for 1:
+            Enter the root node value: 3
+            Enter the left subtree for 3:
+            Enter the root node value: 6
+            Enter the left subtree for 6:
+            Enter the root node value: -1
+            Enter the right subtree for 6:
+            Enter the root node value: -1
+            Enter the right subtree for 3:
+            Enter the root node value: 7
+            Enter the left subtree for 7:
+            Enter the root node value: -1
+            Enter the right subtree for 7:
+            
+            Level-order traversal of the binary tree: 1 2 3 4 5 6 7 

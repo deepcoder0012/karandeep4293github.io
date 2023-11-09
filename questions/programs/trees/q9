@@ -1,0 +1,226 @@
+  #include stdio.h>
+        #include stdlib.h>
+        
+        struct TreeNode {
+            int key;
+            struct TreeNode* left;
+            struct TreeNode* right;
+        };
+        
+        struct TreeNode* createNode(int key) {
+            struct TreeNode* newNode = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+            newNode->key = key;
+            newNode->left = NULL;
+            newNode->right = NULL;
+            return newNode;
+        }
+        
+        struct TreeNode* insert(struct TreeNode* root, int key) {
+            if (root == NULL) {
+                return createNode(key);
+            }
+        
+            if (key < root->key) {
+                root->left = insert(root->left, key);
+            }
+            else if (key > root->key) {
+                root->right = insert(root->right, key);
+            }
+        
+            return root;
+        }
+        
+        struct TreeNode* search(struct TreeNode* root, int key) {
+            if (root == NULL || root->key == key) {
+                return root;
+            }
+        
+            if (key < root->key) {
+                return search(root->left, key);
+            }
+            return search(root->right, key);
+        }
+        
+        void inorder(struct TreeNode* root) {
+            if (root != NULL) {
+                inorder(root->left);
+                printf("%d ", root->key);
+                inorder(root->right);
+            }
+        }
+        
+        struct TreeNode* findMaxValueNode(struct TreeNode* node) {
+            struct TreeNode* current = node;
+            while (current && current->right != NULL) {
+                current = current->right;
+            }
+            return current;
+        }
+        
+        struct TreeNode* findMinValueNode(struct TreeNode* node) {
+            struct TreeNode* current = node;
+            while (current && current->left != NULL) {
+                current = current->left;
+            }
+            return current;
+        }
+        
+        struct TreeNode* findInorderPredecessor(struct TreeNode* root, int key) {
+            struct TreeNode* targetNode = search(root, key);
+            if (targetNode == NULL) {
+                return NULL;
+            }
+        
+            if (targetNode->left != NULL) {
+                return findMaxValueNode(targetNode->left);
+            }
+        
+            struct TreeNode* predecessor = NULL;
+            struct TreeNode* current = root;
+        
+            while (current != targetNode) {
+                if (targetNode->key > current->key) {
+                    predecessor = current;
+                    current = current->right;
+                } else {
+                    current = current->left;
+                }
+            }
+        
+            return predecessor;
+        }
+        
+        struct TreeNode* findInorderSuccessor(struct TreeNode* root, int key) {
+            struct TreeNode* targetNode = search(root, key);
+            if (targetNode == NULL) {
+                return NULL;
+            }
+        
+            if (targetNode->right != NULL) {
+                return findMinValueNode(targetNode->right);
+            }
+        
+            struct TreeNode* successor = NULL;
+            struct TreeNode* current = root;
+        
+            while (current != targetNode) {
+                if (targetNode->key < current->key) {
+                    successor = current;
+                    current = current->left;
+                } else {
+                    current = current->right;
+                }
+            }
+        
+            return successor;
+        }
+        
+        int main() {
+            struct TreeNode* root = NULL;
+            int choice, key;
+            struct TreeNode* inorderPred, *inorderSucc;
+        
+            while (1) {
+                printf("\nBinary Search Tree Operations:\n");
+                printf("1. Insert\n");
+                printf("2. Find Inorder Predecessor\n");
+                printf("3. Find Inorder Successor\n");
+                printf("4. Inorder Traversal\n");
+                printf("5. Exit\n");
+                printf("Enter your choice: ");
+                scanf("%d", &choice);
+        
+                switch (choice) {
+                    case 1:
+                        printf("Enter the key to insert: ");
+                        scanf("%d", &key);
+                        root = insert(root, key);
+                        break;
+                    case 2:
+                        printf("Enter the key to find its Inorder Predecessor: ");
+                        scanf("%d", &key);
+                        inorderPred = findInorderPredecessor(root, key);
+                        if (inorderPred != NULL) {
+                            printf("Inorder Predecessor: %d\n", inorderPred->key);
+                        } else {
+                            printf("Inorder Predecessor not found.\n");
+                        }
+                        break;
+                    case 3:
+                        printf("Enter the key to find its Inorder Successor: ");
+                        scanf("%d", &key);
+                        inorderSucc = findInorderSuccessor(root, key);
+                        if (inorderSucc != NULL) {
+                            printf("Inorder Successor: %d\n", inorderSucc->key);
+                        } else {
+                            printf("Inorder Successor not found.\n");
+                        }
+                        break;
+                    case 4:
+                        printf("Inorder Traversal: ");
+                        inorder(root);
+                        printf("\n");
+                        break;
+                    case 5:
+                        exit(0);
+                    default:
+                        printf("Invalid choice. Please try again.\n");
+                }
+            }
+        
+            return 0;
+        }
+        
+    
+output
+           
+            Binary Search Tree Operations:
+                        1. Insert
+                        2. Find Inorder Predecessor
+                        3. Find Inorder Successor
+                        4. Inorder Traversal
+                        5. Exit
+                        Enter your choice: 1
+                        Enter the key to insert: 50
+                        
+                        Binary Search Tree Operations:
+                        1. Insert
+                        2. Find Inorder Predecessor
+                        3. Find Inorder Successor
+                        4. Inorder Traversal
+                        5. Exit
+                        Enter your choice: 1
+                        Enter the key to insert: 30
+                        
+                        (Continue inserting more values...)
+                        
+                        Binary Search Tree Operations:
+                        1. Insert
+                        2. Find Inorder Predecessor
+                        3. Find Inorder Successor
+                        4. Inorder Traversal
+                        5. Exit
+                        Enter your choice: 2
+                        Enter the key to find its Inorder Predecessor: 50
+                        Inorder Predecessor: 40
+                        
+                        Binary Search Tree Operations:
+                        1. Insert
+                        2. Find Inorder Predecessor
+                        3. Find Inorder Successor
+                        4. Inorder Traversal
+                        5. Exit
+                        Enter your choice: 3
+                        Enter the key to find its Inorder Successor: 30
+                        Inorder Successor: 40
+                        
+                        Binary Search Tree Operations:
+                        1. Insert
+                        2. Find Inorder Predecessor
+                        3. Find Inorder Successor
+                        4. Inorder Traversal
+                        5. Exit
+                        Enter your choice: 4
+                        Inorder Traversal: 30 40 50
+                        
+                        (Continue with other operations or exit the program...)

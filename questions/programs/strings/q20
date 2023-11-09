@@ -1,0 +1,22 @@
+#include<stdio.h>
+void main(){
+    char str[100];
+    printf("\nEnter string : ");
+    gets(str);
+    int c=0,w=0,s=0,l=0;
+    for(int i=0;str[i]!='\0';i++){
+        if(str[i]=='.') l++;
+        else if(str[i]==' '){
+            s++;
+            w++;
+        }else if(str[i]!=' ' && str[i]!='.') c++;
+    }
+    printf("characters : %d words:%d lines:%d spaces:%d",c,w+1,l,s);
+}
+
+
+    ---OUTPUT---
+Enter string : I am good boy. My name is karan.
+characters : 24 words:8 lines:2 spaces:7
+
+    

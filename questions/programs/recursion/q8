@@ -1,0 +1,18 @@
+#include<stdio.h>
+int mean(int arr[],int index,int size,int result){
+    if(index==size) return result/size;
+    else{
+        result=result+arr[index];
+        mean(arr,index+1,size,result);
+    }
+}
+void main(){
+    int arr[]={1,2,3,4,5},size=5;
+    printf("mean:%d",mean(arr,0,size,0));
+}
+
+
+    ---OUTPUT---
+    mean:3
+
+    

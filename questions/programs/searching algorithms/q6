@@ -1,0 +1,27 @@
+#include<stdio.h>
+int binarySearch(char[],int,int,char);
+void main(){
+    char str[]="abcdef",size=6;
+    int index=binarySearch(str,0,size-1,'c');
+    if(index==-1) printf("\nElement not found");
+    else printf("%c found at index %d",str[index],index);
+}
+int binarySearch(char str[],int low,int high,char element){
+    int mid=(low+high)/2;
+    //base case
+    if(str[mid]==element) return mid;
+    else if(mid==low && mid==high) return -1;
+    else if(str[mid]>element){
+    //recursive case
+    binarySearch(str,mid+1,high,element);
+    }else if(str[mid]<element){
+    //recursive case
+    binarySearch(str,low,mid-1,element);
+    }
+}
+
+
+    ---OUTPUT---
+    c found at index 2
+
+    

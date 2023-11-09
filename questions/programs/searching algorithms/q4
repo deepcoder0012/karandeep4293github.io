@@ -1,0 +1,23 @@
+#include<stdio.h>
+void linearSearch(char[],int,char);
+void main(){
+    char arr[]="kartik";
+    int size=sizeof(arr);
+    linearSearch(arr,size,'r');
+}
+
+void linearSearch(char arr[],int size,char element){
+    for(int i=0;i<size;i++){
+        if(arr[i]==element){
+            printf("%c found at index %d",element,i);
+            return;
+        }
+        
+    }
+    printf("Element not found");
+}
+
+    ---OUTPUT---
+    r found at index 2
+
+    

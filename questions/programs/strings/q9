@@ -1,0 +1,23 @@
+#include<stdio.h>
+void main(){
+    char str[40];
+    printf("\nEnter string : ");
+    gets(str);
+    int i,s=0;
+    for(i=0;str[i]!='\0';i++){
+        s++;
+    }
+    char cpyStr[s+1];
+    for(i=0;i<s;i++){
+        cpyStr[i]=str[i];
+    }
+        cpyStr[i]='\0';
+    printf("%s",cpyStr);
+}
+
+
+    ---OUTPUT---
+    Enter string : kartik
+    kartik
+
+    

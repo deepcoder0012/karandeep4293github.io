@@ -1,0 +1,16 @@
+#include <stdio.h>
+int sumOfDigits(int num);
+void main(){
+    int num=786, sum;    
+    sum = sumOfDigits(num); 
+    printf("Sum of digits of %d = %d", num, sum);
+}
+int sumOfDigits(int num){
+    if(num == 0) return 0;       
+    return ((num % 10) + sumOfDigits(num / 10));
+}
+
+    ---OUTPUT---
+    Sum of digits of 786 = 21
+
+    

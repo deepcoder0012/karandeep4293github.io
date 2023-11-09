@@ -1,0 +1,25 @@
+#include<stdio.h>
+void main(){
+    char str[40];
+    printf("\nEnter string : ");
+    gets(str);
+    int i;
+    for(i=0;str[i]!=0;i++){
+        if(i==0){
+                if(str[i]>96) str[i]=str[i]-32;
+        }else if(str[i]!=' '){
+            if(str[i]<96) str[i]=str[i]+32;
+        }else{
+            if(str[i+1]>96) str[i+1]=str[i+1]-32;
+            i++;
+        }    
+    }
+    printf("%s",str);
+}
+
+
+    ---OUTPUT---
+Enter string : this is a sentence
+This Is A Sentence
+
+    

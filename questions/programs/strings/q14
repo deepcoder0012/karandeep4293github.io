@@ -1,0 +1,18 @@
+#include<stdio.h>
+void main(){
+    char str1[]="hello",str2[]="world";
+    int i;
+    for(i=0;str1[i]!=0;i++){
+        printf("%c(%d)-%c(%d) = %c(%d)\n",str1[i],str1[i],str2[i],str2[i],str1[i]-str2[i],str1[i]-str2[i]);        
+    }
+}
+
+
+    ---OUTPUT---
+h(104)-w(119) = ±(-15)
+e(101)-o(111) = ÷(-10)
+l(108)-r(114) = ·(-6)
+l(108)-l(108) = (0)
+o(111)-d(100) = ♂(11)
+
+    

@@ -1,0 +1,62 @@
+#include<stdio.h>
+void push(char []);
+void pop();
+void peek(char []);
+void isEmpty();
+void isFull();
+int top=-1;
+void main(){
+    char stack[5];
+    int option;
+    while(1){
+        printf("\n1)push 2)pop 3)peek 4)isEmpty 5)isFull 6)exit || Enter : ");
+        scanf("%d",&option);
+        if(option<1 || option>6) printf("\nInvalid option");
+        else if(option==1) push(stack);
+        else if(option==2) pop();
+        else if(option==3) peek(stack);
+        else if(option==4) isEmpty();
+        else if(option==5) isFull();
+        else break;
+    }
+}
+void push(char stack[]){
+    if(top==4) printf("\n Stack is full");
+    else{
+        top++;
+        printf("Enter value : ",top);
+        stack[top]=getche();
+    }
+}
+void pop(){
+    if(top==-1) printf("\nStack is empty");
+    else top--;
+}
+void peek(char stack[]){
+    if(top==-1) printf("\nStack is empty");
+    else printf("%c",stack[top]);
+}
+void isEmpty(){
+    if(top==-1) printf("\nStack is empty");
+    else printf("\nStack is not empty");
+}
+void isFull(){
+    if(top==4) printf("\nStack is Full");
+    else printf("\nStack is not Full");
+}
+
+
+    ---OUTPUT---
+1)push 2)pop 3)peek 4)isEmpty 5)isFull 6)exit || Enter : 1
+Enter value : a
+1)push 2)pop 3)peek 4)isEmpty 5)isFull 6)exit || Enter : 1
+Enter value : b
+1)push 2)pop 3)peek 4)isEmpty 5)isFull 6)exit || Enter : 1
+Enter value : c
+1)push 2)pop 3)peek 4)isEmpty 5)isFull 6)exit || Enter : 2
+
+1)push 2)pop 3)peek 4)isEmpty 5)isFull 6)exit || Enter : 3
+b
+1)push 2)pop 3)peek 4)isEmpty 5)isFull 6)exit || Enter : 6
+
+    

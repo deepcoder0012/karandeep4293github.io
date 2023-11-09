@@ -1,0 +1,98 @@
+ #include stdio.h>
+        #include stdlib.h>
+        
+        struct TreeNode {
+            int data;
+            struct TreeNode* left;
+            struct TreeNode* right;
+        };
+        
+        struct TreeNode* createNode(int data) {
+            struct TreeNode* newNode = (struct TreeNode*)malloc(sizeof(struct TreeNode));
+            newNode->data = data;
+            newNode->left = NULL;
+            newNode->right = NULL;
+            return newNode;
+        }
+        
+        struct TreeNode* insert(struct TreeNode* root, int data) {
+            if (root == NULL) {
+                return createNode(data);
+            }
+            if (data < root->data) {
+                root->left = insert(root->left, data);
+            } else {
+                root->right = insert(root->right, data);
+            }
+            return root;
+        }
+        
+        void inOrderTraversal(struct TreeNode* root, int* array, int* index) {
+            if (root != NULL) {
+                inOrderTraversal(root->left, array, index);
+                array[*index] = root->data;
+                (*index)++;
+                inOrderTraversal(root->right, array, index);
+            }
+        }
+        
+        int findKthLargest(struct TreeNode* root, int k) {
+            int* array = (int*)malloc(sizeof(int) * k);
+            int index = 0;
+            inOrderTraversal(root, array, &index);
+            int kthLargest = array[index - k];
+            free(array);
+            return kthLargest;
+        }
+        
+        int main() {
+            int n, i, data, k;
+        
+            printf("Enter the number of elements in the array: ");
+            scanf("%d", &n);
+        
+            if (n <= 0) {
+                printf("Invalid input.\n");
+                return 1;
+            }
+        
+            int* arr = (int*)malloc(n * sizeof(int));
+        
+            printf("Enter the elements of the array:\n");
+            for (i = 0; i < n; i++) {
+                scanf("%d", &data);
+                arr[i] = data;
+            }
+        
+            struct TreeNode* root = NULL;
+            for (i = 0; i < n; i++) {
+                root = insert(root, arr[i]);
+            }
+        
+            printf("Enter the value of K to find the Kth largest element: ");
+            scanf("%d", &k);
+        
+            int kthLargest = findKthLargest(root, k);
+        
+            printf("The %dth largest element in the BST is: %d\n", k, kthLargest);
+        
+            free(arr);
+            return 0;
+        }
+        
+
+                
+output
+           
+            Enter the number of elements in the array: 7
+            Enter the elements of the array:
+            50
+            30
+            70
+            20
+            40
+            60
+            80
+            Enter the value of K to find the Kth largest element: 3
+            The 3rd largest element in the BST is: 60 
+        

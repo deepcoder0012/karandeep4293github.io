@@ -1,0 +1,89 @@
+#include<stdio.h>
+struct w{
+    char word[20];
+};
+struct m{
+    char meaning[100];
+};
+void main(){
+    struct w arrWord[10];
+    struct m arrMeaning[10];
+    int storage[10]={0};
+    int option,index,i;
+    while(1){
+        printf("\n1)create 2)delete 3)search 4)exit || enter : ");
+        scanf("%d",&option);
+    if(option<1 || option>4) printf("\nInvalid option");
+    else if(option==1){    
+    //create
+    for(i=0;i<10;i++){
+        if(storage[i]==0){
+            storage[i]=1;
+            break;
+        }
+    }
+    if(i==10){
+        printf("\nNo storage left");
+    }else{
+        printf("\nEnter word : ");
+        scanf("%s",arrWord[i].word);
+        fflush(stdin);
+        printf("\nEnter meaning : ");
+        gets(arrMeaning[i].meaning);
+        fflush(stdin);
+    }
+    }else if(option==2){
+    //delete
+    for(i=0;i<10;i++){
+        if(storage[i]==1){
+            printf("\n%s [%d]",arrWord[i].word,i);
+        }
+    }
+    printf("\nEnter index number to delete : ");
+    scanf("%d",&index);
+    storage[index]=0;
+    }else if(option==3){
+    //search
+    for(i=0;i<10;i++){
+        if(storage[i]==1){
+            printf("\n%s [%d]",arrWord[i].word,i);
+        }
+    }
+    printf("\nEnter number to search meaning : ");
+    scanf("%d",&index);
+    printf("\nMeaning : ");
+    puts(arrMeaning[index].meaning);
+    }else break;
+    }
+}
+
+
+    ---OUTPUT---
+1)create 2)delete 3)search 4)exit || enter : 1
+
+Enter word : tree
+
+Enter meaning : tree gives us oxygen and fruit
+
+1)create 2)delete 3)search 4)exit || enter : 1
+
+Enter word : computer
+
+Enter meaning : which helps in computaion
+
+1)create 2)delete 3)search 4)exit || enter : 2
+
+tree [0]
+computer [1]
+Enter index number to delete : 0
+
+1)create 2)delete 3)search 4)exit || enter : 3
+
+computer [1]
+Enter number to search meaning : 1
+
+Meaning : which helps in computaion
+
+1)create 2)delete 3)search 4)exit || enter : 4
+
+    

@@ -1,0 +1,21 @@
+#include<stdio.h>
+void main(){
+    char str[]="kartik",c;
+    int i;
+    printf("Enter character to be serched : ");
+    scanf("%c",&c);
+    for(i=0;str[i]!=0;i++){
+        if(str[i]==c){
+            printf("%c found at %d index",c,i);
+            break;
+        }
+    }
+        if(i==sizeof(str)-1) printf("-1");
+}
+
+
+    ---OUTPUT---
+    Enter character to be serched : u
+    -1
+
+    

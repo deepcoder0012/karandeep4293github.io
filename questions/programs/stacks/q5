@@ -1,0 +1,56 @@
+#include<stdio.h>
+void push(char [],char);
+char pop(char []);
+void peek(char []);
+void isEmpty();
+void isFull();
+int top=-1;
+void main(){
+    char str[20];
+    printf("\nEnter string : ");
+    scanf("%s",str);
+    int i,size=0;
+    for(i=0;str[i]!='\0';i++){
+        size++;
+    }
+    char stack[size];
+    for(i=0;i<size;i++){
+        push(stack,str[i]);
+    }
+    for(i=0;i<size;i++){
+        printf("%c",pop(stack));
+    }
+}
+void push(char stack[],char value){
+    if(top==9) printf("\n Stack is full");
+    else{
+        top++;
+        stack[top]=value;
+    }
+}
+char pop(char stack[]){
+    if(top==-1) printf("\nStack is empty");
+    else{
+     top--;
+     return stack[top+1];   
+    }
+}
+void peek(char stack[]){
+    if(top==-1) printf("\nStack is empty");
+    else printf("%c",stack[top]);
+}
+void isEmpty(){
+    if(top==-1) printf("\nStack is empty");
+    else printf("\nStack is not empty");
+}
+void isFull(){
+    if(top==4) printf("\nStack is Full");
+    else printf("\nStack is not Full");
+}
+
+
+    ---OUTPUT---
+Enter string : kartik
+kitrak
+
+    

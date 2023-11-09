@@ -1,0 +1,27 @@
+#include<stdio.h>
+void trim(char[],int);
+void main(){
+    char str[]="                  hello        ";
+    trim(str,(sizeof(str)-1));
+}
+
+void trim(char str[],int size){
+    int i,start,end;  
+    for(i=0;i<size;i++){
+        if(str[i]!=' ') break;
+    }
+    start=i;
+    for(i=start+1;i<size;i++){
+        if(str[i]==' ') break;
+    }
+    end=i-1;
+    for(i=start;i<=end;i++){
+        printf("%c",str[i]);
+    }
+}
+
+
+    ---OUPTUT---
+hello
+
+    

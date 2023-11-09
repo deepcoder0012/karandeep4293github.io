@@ -1,0 +1,33 @@
+#include<stdio.h>
+void bubbleSort(char arr[],int size){
+    int temp,s=size;
+    for(int j=0;j<size-1;j++){
+        for(int i=0;i<s-1;i++){
+            if(arr[i]>arr[i+1]){
+                temp=arr[i];
+                arr[i]=arr[i+1];
+                arr[i+1]=temp;
+            } 
+        }
+        s--;
+    }
+}
+void main(){
+    char str[40];
+    printf("\nEnter string : ");
+    gets(str);
+    int i,s=0;
+    for(i=0;str[i]!='\0';i++){
+        s++;
+    }
+    bubbleSort(str,s);
+    printf("%s",str);
+}
+
+
+    ---OUTPUT---
+Enter string : kartik
+aikkrt
+
+
+    

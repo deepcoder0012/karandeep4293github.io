@@ -1,0 +1,33 @@
+#include<stdio.h>
+void bubbleSort(int arr[],int size){
+    int temp,i,s=size;
+    for(int j=0;j<(s-1);j++){
+    for(i=0;i<(size-1);i++){
+        if(arr[i]>arr[i+1]){
+            temp=arr[i];
+            arr[i]=arr[i+1];
+            arr[i+1]=temp;
+        }
+    }
+    size=size-1;
+    }
+}
+void main(){
+    int i,arr1[]={1,66,98,105},arr2[]={25,41,63},newArray[(sizeof(arr1)+sizeof(arr2))/sizeof(int)];
+    for(i=0;i<(sizeof(arr1)/sizeof(int));i++){
+        newArray[i]=arr1[i];
+    }
+    for(i=(sizeof(arr1)/sizeof(int));i<(sizeof(newArray)/sizeof(int));i++){
+        newArray[i]=arr2[i-4];
+    }
+    bubbleSort(newArray,(sizeof(newArray)/sizeof(int)));
+    for(i=0;i<7;i++){
+        printf("%d ",newArray[i]);
+    }
+}
+
+
+    ---OUTPUT---
+    1 25 41 63 66 98 105 
+
+    

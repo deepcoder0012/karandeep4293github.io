@@ -1,0 +1,86 @@
+#include<stdio.h>
+#include<stdlib.h>
+void push(int data);
+void pop();
+void peek();
+void isEmpty();
+void isFull();
+struct node{
+        int data;
+        int * prev;
+        int * next;
+};
+
+struct node * top = NULL;
+struct node * nn = NULL;
+struct node * temp = NULL;
+void main(){
+        int data,option;
+        while(1){
+        printf("\n1)push 2)pop 3)peek 4)isEmpty 5)isFull 6)exit || Enter : ");
+        scanf("%d",&option);
+        if(option<1 || option>6) printf("\nInvalid option");
+        else if(option==1){
+                printf("\nEnter value : ");
+                scanf("%d",&data);
+                push(data);
+        }
+        else if(option==2) pop();
+        else if(option==3) peek();
+        else if(option==4) isEmpty();
+        else if(option==5) isFull();
+        else break;
+    }
+}
+
+void push(int data){
+        nn=(struct node*)malloc(sizeof(struct node));
+        if(nn==NULL) printf("\nStack is full");
+        else{
+                nn->data=data;
+                nn->prev=top;
+                nn->next=NULL;
+                top=nn;
+        }
+}
+void pop(){
+        if(top==NULL) printf("\nStack is empty");
+        else{
+                temp=top;
+                top=top->prev;
+                free(temp);
+        }
+}
+void peek(){
+        if(top==NULL){
+                printf("\nNothing in stack");
+                return;
+        }
+        printf("\n Peek : %d",top->data);
+}
+void isEmpty(){
+        if(top==NULL) printf("\nStack is Empty!!");
+        else printf("\nStack is not Empty!!");
+}
+void isFull(){
+        nn=malloc(sizeof(struct node));
+        if(nn==NULL) printf("\nStack is full!!");
+        else printf("\nStack is not full!!");
+}
+
+
+        ---OUTPUT---
+1)push 2)pop 3)peek 4)isEmpty 5)isFull 6)exit || Enter : 1
+
+Enter value : 1
+
+1)push 2)pop 3)peek 4)isEmpty 5)isFull 6)exit || Enter : 1
+
+Enter value : 2
+
+1)push 2)pop 3)peek 4)isEmpty 5)isFull 6)exit || Enter : 3
+
+ Peek : 2
+1)push 2)pop 3)peek 4)isEmpty 5)isFull 6)exit || Enter : 6
+
+        

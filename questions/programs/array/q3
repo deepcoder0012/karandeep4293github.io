@@ -1,0 +1,23 @@
+#include<stdio.h>
+#define n 3
+void main(){
+    int arr1[n],arr2[n],i;
+    for(i=0;i<n;i++){
+        printf("\nEnter value %d : ",i+1);
+        scanf("%d",&arr1[i]);
+        arr2[i]=arr1[i];
+    }
+    for(i=0;i<n;i++){
+        printf("%d ",arr2[i]);
+    }
+}
+
+    ---OUTPUT---
+Enter value 1 : 1
+
+Enter value 2 : 2
+
+Enter value 3 : 3
+1 2 3
+
+    

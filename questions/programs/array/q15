@@ -1,0 +1,33 @@
+#include<stdio.h>
+#define n 4
+void main(){
+    int arr[n],i,num,r,pal;
+    for(i=0;i<n;i++){
+    printf("\nEnter value %d : ",i+1);
+    scanf("%d",&arr[i]);
+    }
+    for(i=0;i<n;i++){
+        num=arr[i];
+        pal=0;
+        while(1){
+            if(num==0) break;
+            r=num%10;
+            pal=r+(pal*10);
+            num=num/10;
+        }
+        if(arr[i]==pal)
+        printf("%d ",pal);
+    }
+}
+
+    ---OUTPUT---
+Enter value 1 : 121
+
+Enter value 2 : 22
+    
+Enter value 3 : 43
+    
+Enter value 4 : 55
+121 22 55    
+
+    

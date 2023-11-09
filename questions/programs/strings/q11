@@ -1,0 +1,17 @@
+#include<stdio.h>
+void main(){
+    char str[]="abcba";
+    int i,j,p=0;
+    for(i=0,j=sizeof(str)-2;i<(sizeof(str)-1)/2;i++,j--){
+        if(str[i]!=str[j]){
+            printf("String is not palindrome");
+            break;
+        }else p++;
+    }
+    if(p==((sizeof(str)-1)/2)) printf("String is palindrome");
+}
+
+    ---OUTPUT---
+    string is palindrome
+
+    

@@ -1,0 +1,16 @@
+#include<stdio.h>
+void main(){
+    char str[]="abcde";
+    int j,i,s=5;
+    for(i=0;i<s;i++){
+        for(j=i+1;j<s;j++){
+            printf("(%c,%c) ",str[i],str[j]);
+        }
+    }
+}
+
+
+    ---OUTPUT---
+    (a,b) (a,c) (a,d) (a,e) (b,c) (b,d) (b,e) (c,d) (c,e) (d,e) 
+
+    

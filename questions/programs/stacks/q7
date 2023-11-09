@@ -1,0 +1,85 @@
+#include<stdio.h>
+#define n 10
+void push(int);
+void pop(int);
+void display(int);
+int stack[10],topS=-1,topE=n;
+void main(){
+    int stackNumber,option;
+    while(1){
+        printf("\nChoose stack -> 1 or 2 : ");
+        scanf("%d",&stackNumber);
+        if(stackNumber==1 || stackNumber==2){
+            printf("\n1)push 2)pop 3)display 4)exit || Enter : ");
+            scanf("%d",&option);
+            if(option<1 || option>4) printf("\nInvalid option");
+            else if(option==1) push(stackNumber);
+            else if(option==2) pop(stackNumber);
+            else if(option==3) display(stackNumber);
+            else break;
+        }else printf("\nPlease choose stack either 1 or 2");
+    }    
+}
+void push(int stackNumber){
+    if(topS+1==topE) printf("\n Value can't inserted as both stacks are full");
+    else{
+        printf("Enter value : ");
+        if(stackNumber==1){
+            topS++;
+        scanf("%d",&stack[topS]);
+        }else{
+            topE--;
+            scanf("%d",&stack[topE]);
+        }
+    }
+}
+void pop(int stackNumber){
+    if(topS==-1 || topE==n) printf("\nStack is empty");
+    else{
+        if(stackNumber==1) topS--;
+        else topE++;
+    }
+}
+void display(int stackNumber){
+    if(topS==-1 || topE==n) printf("\nStack is empty");
+    else{
+        int i;
+        if(stackNumber==1){
+            for(i=topS;i>=0;i--){
+                printf("%d ",stack[i]);
+            }
+        }else{
+            for(i=topE;i<=9;i++){
+                printf("%d ",stack[i]);
+            }
+        }
+    }
+}
+
+    ---OUTPUT---
+    
+Choose stack -> 1 or 2 : 1
+1)push 2)pop 3)display 4)exit || Enter : 1
+Enter value : 5
+
+Choose stack -> 1 or 2 : 2
+
+1)push 2)pop 3)display 4)exit || Enter : 1
+Enter value : 10
+
+Choose stack -> 1 or 2 : 1
+
+1)push 2)pop 3)display 4)exit || Enter : 3
+5 
+Choose stack -> 1 or 2 : 2 
+
+1)push 2)pop 3)display 4)exit || Enter : 3
+10 
+Choose stack -> 1 or 2 : 4
+
+Please choose stack either 1 or 2
+Choose stack -> 1 or 2 : 1
+
+1)push 2)pop 3)display 4)exit || Enter : 4
+
+    

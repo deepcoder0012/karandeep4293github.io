@@ -1,0 +1,115 @@
+    #include 
+    #include 
+    
+    struct Node {
+        int data;
+        struct Node* next;
+    };
+    
+    struct Graph {
+        int V;
+        struct Node** adjList;
+    };
+    
+    struct Node* createNode(int data) {
+        struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+        newNode->data = data;
+        newNode->next = NULL;
+        return newNode;
+    }
+    
+    struct Graph* createGraph(int V) {
+        struct Graph* graph = (struct Graph*)malloc(sizeof(struct Graph));
+        graph->V = V;
+        graph->adjList = (struct Node**)malloc(V * sizeof(struct Node*));
+    
+        for (int i = 0; i < V; i++) {
+            graph->adjList[i] = NULL;
+        }
+    
+        return graph;
+    }
+    
+    void addEdge(struct Graph* graph, int src, int dest) {
+        struct Node* newNode = createNode(dest);
+        newNode->next = graph->adjList[src];
+        graph->adjList[src] = newNode;
+    
+        newNode = createNode(src);
+        newNode->next = graph->adjList[dest];
+        graph->adjList[dest] = newNode;
+    }
+    
+    void breadthFirstSearch(struct Graph* graph, int startVertex, int visited[]) {
+        int queue[graph->V];
+        int front = -1, rear = -1;
+    
+        printf("Breadth-First Search Traversal starting from vertex %d: ", startVertex);
+    
+        visited[startVertex] = 1;
+        queue[++rear] = startVertex;
+    
+        while (front != rear) {
+            int currentVertex = queue[++front];
+            printf("%d ", currentVertex);
+    
+            struct Node* current = graph->adjList[currentVertex];
+            while (current != NULL) {
+                if (!visited[current->data]) {
+                    visited[current->data] = 1;
+                    queue[++rear] = current->data;
+                }
+                current = current->next;
+            }
+        }
+    
+        printf("\n");
+    }
+    
+    int main() {
+        int V, E;
+    
+        printf("Enter the number of vertices: ");
+        scanf("%d", &V);
+    
+        struct Graph* graph = createGraph(V);
+    
+        printf("Enter the number of edges: ");
+        scanf("%d", &E);
+    
+        for (int i = 0; i < E; i++) {
+            int src, dest;
+            printf("Enter edge %d (source destination): ", i + 1);
+            scanf("%d %d", &src, &dest);
+            addEdge(graph, src, dest);
+        }
+    
+        int visited[V];
+        for (int i = 0; i < V; i++) {
+            visited[i] = 0;
+        }
+    
+        int startVertex;
+        printf("Enter the starting vertex for BFS: ");
+        scanf("%d", &startVertex);
+    
+        breadthFirstSearch(graph, startVertex, visited);
+    
+        return 0;
+    }
+    
+
+    
+
+   
+output
+            Enter the number of vertices: 5
+            Enter the number of edges: 6
+            Enter edge 1 (source destination): 0 1
+            Enter edge 2 (source destination): 0 2
+            Enter edge 3 (source destination): 1 3
+            Enter edge 4 (source destination): 1 4
+            Enter edge 5 (source destination): 2 4
+            Enter edge 6 (source destination): 3 4
+            Enter the starting vertex for BFS: 0
+            Breadth-First Search Traversal starting from vertex 0: 0 1 2 3 4          

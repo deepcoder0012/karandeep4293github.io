@@ -1,0 +1,21 @@
+#include&glt;stdio.h>
+#define n 3
+void main(){
+    int arr[n],i;
+    for(i=0;i&glt;n;i++){
+    printf("\nEnter value %d : ",i+1);
+    scanf("%d",&arr[i]);
+    }
+    for(i=0;i&glt;n;i++){
+        printf("%d ",arr[i]);
+    }
+}
+
+
+    ---OUTPUT---   
+Enter value 1 : 2
+
+Enter value 2 : 3
+
+Enter value 3 : 4
+2 3 4 

@@ -1,0 +1,23 @@
+#include<stdio.h>
+void linearSearch(int[],int,int);
+void main(){
+    int arr[]={1,5,7,90},size=sizeof(arr)/sizeof(int);
+    linearSearch(arr,size,90);
+}
+
+void linearSearch(int arr[],int size,int element){
+    for(int i=0;i<size;i++){
+        if(arr[i]==element){
+            printf("%d found at index %d",element,i);
+            return;
+        }
+        
+    }
+    printf("Element not found");
+}
+
+
+    ---OUTPUT---
+    90 found at index 3
+
+    

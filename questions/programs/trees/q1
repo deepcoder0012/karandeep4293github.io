@@ -1,0 +1,79 @@
+ 
+        #include stdio.h>
+                            #include stdlib.h>
+                            
+                            struct Node {
+                                char data;
+                                struct Node* left;
+                                struct Node* right;
+                            };
+                            
+                            typedef struct Node Node;
+                            
+                            int search(char inorder[], int start, int end, char key) {
+                                for (int i = start; i <= end; i++) {
+                                    if (inorder[i] == key) {
+                                        return i;
+                                    }
+                                }
+                                return -1;
+                            }
+                            
+                            Node* buildTree(char preorder[], char inorder[], int start, int end, int* preIndex) {
+                                if (start > end) {
+                                    return NULL;
+                                }
+                            
+                                Node* node = (Node*)malloc(sizeof(Node));
+                                node->data = preorder[(*preIndex)++];
+                                node->left = NULL;
+                                node->right = NULL;
+                            
+                                if (start == end) {
+                                    return node;
+                                }
+                            
+                                int inIndex = search(inorder, start, end, node->data);
+                            
+                                node->left = buildTree(preorder, inorder, start, inIndex - 1, preIndex);
+                                node->right = buildTree(preorder, inorder, inIndex + 1, end, preIndex);
+                            
+                                return node;
+                            }
+                            
+                            void inorderTraversal(Node* root) {
+                                if (root != NULL) {
+                                    inorderTraversal(root->left);
+                                    printf("%c ", root->data);
+                                    inorderTraversal(root->right);
+                                }
+                            }
+                            
+                            int main() {
+                                char preorder[100];
+                                char inorder[100];
+                            
+                                printf("Enter the preorder traversal: ");
+                                scanf("%s", preorder);
+                            
+                                printf("Enter the inorder traversal: ");
+                                scanf("%s", inorder);
+                            
+                                int n = strlen(preorder);
+                                int preIndex = 0;
+                            
+                                Node* root = buildTree(preorder, inorder, 0, n - 1, &preIndex);
+                            
+                                printf("Inorder traversal of constructed binary tree: ");
+                                inorderTraversal(root);
+                                printf("\n");
+                            
+                                return 0;
+                            }
+                              
+    
+output
+           
+            Enter the preorder traversal: ABDECF
+            Enter the inorder traversal: DBEAFC
+            Inorder traversal of the constructed binary tree: D B E A F C 

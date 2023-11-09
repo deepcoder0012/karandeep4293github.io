@@ -1,0 +1,50 @@
+#include< stdio.h >
+int occur(char *str,char *word,int count){
+    int i,j;
+    for( i=0;str[i]!='\0';i++){
+if(i==0){
+   int k=i;
+      for( j=k;word[j]!='\0';j++,k++){ 
+            if(word[j]!=str[k])
+            break;      
+            else
+            continue;
+         }
+         if(word[j]=='\0'&& str[k]==' ')
+         count++;
+}
+else{
+        if(str[i]==' '){
+            int k=i+1;
+         for( j=0;word[j]!='\0';j++,k++){
+            
+            if(word[j]!=str[k])
+            break;
+            
+         }
+if(word[j]=='\0'&& (str[k]=='\0'||str[k]==' '))
+         count++;
+
+        }}}
+    return count;
+}
+void main(){
+    char str[50],word[10];
+    int i,count=0;
+    printf("Enter the sentence : ");
+    gets(str);
+    printf("Enter the word to find : ");
+    gets(word);
+    count=occur(str,word,count);
+    printf("%d",count);
+
+}  
+
+
+    ---OUTPUT---
+Enter the sentence : 
+I AM NOT GOOD BUT VERY GOOD
+Enter the word to find : GOOD
+2
+
+    

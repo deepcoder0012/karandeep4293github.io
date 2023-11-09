@@ -1,0 +1,75 @@
+    
+#include<stdio.h>
+void main(){
+    int matrix1[4][2];
+    int matrix2[4][2];
+    int r,c;
+    printf("\n----Enter matrix 1----\n");
+    for(r=0;r<4;r++){                   
+    for(c=0;c<2;c++){
+        printf("\nmatrix1[%d][%d] : ",r,c);
+        scanf("%d",&matrix1[r][c]);
+    }
+    }  
+
+    printf("\n----Enter matrix 2----\n");
+    for(r=0;r<4;r++){                   
+    for(c=0;c<2;c++){
+        printf("\nmatrix2[%d][%d] : ",r,c);
+        scanf("%d",&matrix2[r][c]);
+    }
+    }  
+
+    printf("\n----Result----\n");
+    for(r=0;r<4;r++){                   
+    for(c=0;c<2;c++){
+        printf("%d ",matrix1[r][c]-matrix2[r][c]);
+    }
+    printf("\n");
+    }                          
+}
+
+
+    ---OUTPUT---
+    ----Enter matrix 1----
+
+matrix1[0][0] : 1
+
+matrix1[0][1] : 2
+
+matrix1[1][0] : 3
+
+matrix1[1][1] : 4
+
+matrix1[2][0] : 5
+
+matrix1[2][1] : 6
+
+matrix1[3][0] : 7
+
+matrix1[3][1] : 8
+
+----Enter matrix 2----
+
+matrix2[0][0] : 1
+
+matrix2[0][1] : 2
+
+matrix2[1][0] : 3
+
+matrix2[1][1] : 4
+
+matrix2[2][0] : 5
+
+matrix2[2][1] : 6
+
+matrix2[3][0] : 7
+
+matrix2[3][1] : 8
+
+----Result----
+0 0
+0 0
+0 0
+0 0
+

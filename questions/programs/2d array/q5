@@ -1,0 +1,57 @@
+#include≪stdio.h>
+void main(){
+    int matrix1[4][2];
+    int matrix2[4][2];
+    int r,c;
+    printf("\n----Enter matrix----\n");
+    for(r=0;r≪4;r++){                   
+    for(c=0;c≪2;c++){
+        printf("\nmatrix[%d][%d] : ",r,c);
+        scanf("%d",&matrix1[r][c]);
+    }
+    }  
+
+    printf("\n----Enter matrix 2----\n");
+    for(r=0;r≪4;r++){                   
+    for(c=0;c≪2;c++){
+        matrix2[r][c]=matrix1[r][c];
+    }
+    }  
+
+    printf("\n----Copied matrix----\n");
+    for(r=0;r≪4;r++){                   
+    for(c=0;c≪2;c++){
+        printf("%d ",matrix2[r][c]);
+    }
+    printf("\n");
+    }                          
+}
+
+    ---OUTPUT---
+    ----Enter matrix----
+
+    matrix[0][0] : 1
+    
+    matrix[0][1] : 2
+    
+    matrix[1][0] : 3
+    
+    matrix[1][1] : 4
+    
+    matrix[2][0] : 5
+    
+    matrix[2][1] : 6
+    
+    matrix[3][0] : 7
+    
+    matrix[3][1] : 8
+    
+    ----Enter matrix 2----
+    
+    ----Copied matrix----
+    1 2
+    3 4
+    5 6
+    7 8
+
+    

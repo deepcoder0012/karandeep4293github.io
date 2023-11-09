@@ -1,0 +1,37 @@
+#include<stdio.h>
+void insertionSort(char[],int);
+void main(){
+    char arr[15];
+    printf("\nEnter string : ");
+    scanf("%s",arr);
+    int size=0;
+    for(int i=0;arr[i]!='\0';i++){
+        size++;
+    }
+    insertionSort(arr,size);
+    for(int i=0;i<size;i++){
+        printf("%c ",arr[i]);
+    }
+}
+void insertionSort(char arr[],int size){
+    int sorted=0,ele,temp;
+    for(int j=1;j<size;j++){
+        ele=sorted+1;
+    for(int i=j;i>0;i--){
+        if(arr[ele]<arr[i-1]){
+            temp=arr[i];
+            arr[i]=arr[i-1];
+            arr[i-1]=temp;
+            ele--;
+        }
+    }
+    sorted++;
+    }
+}
+
+
+    ---OUTPUT---
+Enter string : insertionsort
+e i i n n o o r r s s t t 
+
+    

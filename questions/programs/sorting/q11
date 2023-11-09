@@ -1,0 +1,37 @@
+#include<stdio.h>
+void selectionSort(char[],int);
+void main(){
+    char arr[15];
+    printf("\nEnter string : ");
+    scanf("%s",arr);
+    int size=0;
+    for(int i=0;arr[i]!='\0';i++){
+        size++;
+    }
+    selectionSort(arr,size);
+    for(int i=0;i<size;i++){
+        printf("%c ",arr[i]);
+    }
+}
+void selectionSort(char arr[],int size){
+    int min=0,temp;
+    for(int j=0;j<size-1;j++){
+    for(int i=j+1;i<size;i++){
+        if(arr[min]>arr[i]){
+            min=i;
+        }
+    }
+    if(arr[min]!=arr[j]){
+        temp=arr[j];
+        arr[j]=arr[min];
+        arr[min]=temp;
+    }
+    min=j+1;
+    }
+}
+
+    ---OUTPUT---
+Enter string : cbeda
+a b c d e 
+
+    
